@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Calendar - CampusConnect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+ :root {
+            --primary: #3a0ca3;
+            --secondary: #4361ee;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f9c74f;
+            --danger: #f94144;
+            --text: #2b2d42;
+            --background: #f8f9fa;
+        }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      line-height: 1.6;
+      /* padding: 20px; */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-top: 100px;
+      margin-bottom: 100px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px;
+                  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .calendar-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .calendar {
+      flex: 1;
+      min-width: 350px;
+      background: rgba(255, 255, 255, 0.966);
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+    }
+
+    .calendar-header h2 {
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-buttons button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-buttons button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      background: #f1f5f9;
+      padding: 12px 0;
+      text-align: center;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      padding: 15px;
+    }
+
+    .day {
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .day:hover {
+      background: #f1f5f9;
+      transform: translateY(-2px);
+    }
+
+    .current-day {
+      background: #3498db;
+      color: white;
+      box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    }
+
+    .event-day {
+      background: #fffaf2;
+      border: 1px solid #ffe0b2;
+    }
+
+    .event-day::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e74c3c;
+    }
+
+    .event-day.current-day::after {
+      background: white;
+    }
+
+    .other-month {
+      color: #ccc;
+    }
+
+    .events-sidebar {
+      flex: 1;
+      min-width: 350px;
+      background: rgba(255, 255, 255, 0.966);
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      padding: 25px;
+    }
+
+    .events-sidebar h2 {
+      color: #2c3e50;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f1f5f9;
+      font-weight: 500;
+      font-size: 1.8rem;
+    }
+
+    .event-list {
+      /* background-color: #2c3e50; */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .event-item {
+      padding: 20px;
+      border-radius: 10px;
+      background: #e6e6e6;
+      border-left: 4px solid #3498db;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .event-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-date {
+      color: #3498db;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+    }
+
+    .event-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #2c3e50;
+      font-size: 1.2rem;
+    }
+
+    .event-details {
+      color: #7f8c8d;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .event-details i {
+      width: 18px;
+    }
+
+
+
+    @media (max-width: 768px) {
+      .calendar-container {
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="nav-inner">
+      <div class="logo">Campus<span>Connect</span></div>
+
+      <ul class="nav-links" role="menubar" aria-label="Primary">
+        <li><a class="link" href="index.html">Home</a></li>
+        <li><a class="link" href="gallery.html">Gallery</a></li>
+
+        <li class="dropdown" data-align="left">
+          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Events<i
+              class="fa-solid fa-sort-down"></i></button>
+          <div class="dropdown-menu" role="menu" aria-hidden="true">
+            <a role="menuitem" href="eventCalender.html">Event Calender</a>
+            <a role="menuitem" href="eventDetails.html">Event Details</a>
+          </div>
+        </li>
+
+        <li><a class="link" href="registration.html">Registration</a></li>
+        <li><a class="link" href="aboutUs.html">About Us</a></li>
+        <li><a class="link" href="contactUs.html">Contact Us</a></li>
+        <li><a class="link" href="feedback.html">Feedback</a></li>
+
+      </ul>
+
+      <div class="nav-right">
+        <!-- <a class="login" href="">Login/SignUp</a> -->
+        <a class="cta" href="login-SignUp.html">Login/SignUp</a>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+          <!-- <span></span> -->
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay" id="mobileOverlay" tabindex="-1" aria-hidden="true"></div>
+
+  <aside class="mobile-panel" id="mobileMenu" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="mobile-head">
+      <div class="logo">Campus<span>Connect</span></div>
+      <button class="mobile-close" id="mobileClose" aria-label="Close menu"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="mobile-inner">
+      <nav class="mobile-links" aria-label="Mobile menu">
+        <a class="mobile-link" href="index.html">Home</a>
+        <a class="mobile-link" href="gallery.html">Gallery</a>
+
+        <div class="mobile-accordion">
+          <button class="mobile-accordion-toggle" aria-expanded="false">Events <span class="chev">▾</span></button>
+          <div class="panel" aria-hidden="true">
+            <a class="mobile-link" href="eventCalender.html">Event Calender</a>
+            <a class="mobile-link" href="eventDetails.html">Event Details</a>
+          </div>
+        </div>
+
+        <a class="mobile-link" href="registration.html">Registration</a>
+        <a class="mobile-link" href="aboutUs.html">About Us</a>
+        <a class="mobile-link" href="contactUs.html">Contact Us</a>
+        <a class="mobile-link" href="feedback.html">Feedback</a>
+
+      </nav>
+
+      <div class="mobile-cta">
+        <a class="cta" href="login-SignUp.html">Login/SignUp</a>
+      </div>
+    </div>
+  </aside>
+
+  <div class="container">
+    <header>
+      <h1>College Event Calendar</h1>
+      <p class="subtitle">Stay updated with all college events and activities</p>
+    </header>
+
+    <div class="calendar-container">
+      <div class="calendar">
+        <div class="calendar-header">
+          <h2 id="current-month">September 2023</h2>
+          <div class="nav-buttons">
+            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+
+        <div class="days" id="calendar-days">
+        </div>
+      </div>
+
+      <div class="events-sidebar">
+        <h2>Upcoming Events</h2>
+        <div class="event-list" id="event-list">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3>About CampusConnect</h3>
+        <p>Our central hub for discovering and managing college events, activities, and opportunities.</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a><br>
+        <a href="gallery.html">Gallery</a><br>
+        <a href="eventCalender.html">Events</a><br>
+        <a href="aboutUs.html">About Us</a><br>
+        <a href="contactUs.html">Contact</a>
+      </div>
+
+      <div class="contact-info">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Global Vision College, Orangi Town Karachi</p>
+        <p><i class="fas fa-phone"></i> +92 123-4560527</p>
+        <p><i class="fas fa-envelope"></i> info@campusconnect.edu</p>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe to our newsletter to get updates on upcoming events.</p>
+        <input type="email" placeholder="Your Email Address">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 CampusConnect College Event Management System. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    const events = [
+      {
+        id: 1,
+        title: "Orientation Day for Freshmen",
+        date: "2025-09-15",
+        time: "10:00 AM",
+        location: "Main Auditorium",
+        category: "Academic"
+      },
+      {
+        id: 2,
+        title: "Sports Tournament Begins",
+        date: "2025-09-20",
+        time: "9:00 AM",
+        location: "College Ground",
+        category: "Sports"
+      },
+      {
+        id: 3,
+        title: "Science Exhibition",
+        date: "2025-10-05",
+        time: "9:00 AM - 4:00 PM",
+        location: "Science Block",
+        category: "Academic"
+      }
+    ];
+
+
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function generateCalendar(month, year) {
+      const calendarDays = document.getElementById('calendar-days');
+      calendarDays.innerHTML = '';
+
+      document.getElementById('current-month').textContent = `${months[month]} ${year}`;
+
+      const firstDay = new Date(year, month, 1).getDay();
+
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      const prevMonthDays = new Date(year, month, 0).getDate();
+
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const day = document.createElement('div');
+        day.classList.add('day', 'other-month');
+        day.textContent = prevMonthDays - i;
+        calendarDays.appendChild(day);
+      }
+
+      const today = new Date();
+      for (let i = 1; i <= daysInMonth; i++) {
+        const day = document.createElement('div');
+        day.classList.add('day');
+        day.textContent = i;
+
+        if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+          day.classList.add('current-day');
+        }
+
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+        const dayEvents = events.filter(event => event.date === dateStr);
+
+        if (dayEvents.length > 0) {
+          day.classList.add('event-day');
+          day.setAttribute('data-date', dateStr);
+        }
+
+        calendarDays.appendChild(day);
+      }
+
+      const totalCells = 42; 
+      const remainingCells = totalCells - (firstDay + daysInMonth);
+
+      for (let i = 1; i <= remainingCells; i++) {
+        const day = document.createElement('div');
+        day.classList.add('day', 'other-month');
+        day.textContent = i;
+        calendarDays.appendChild(day);
+      }
+
+      updateEventsList();
+    }
+
+    function updateEventsList() {
+      const eventList = document.getElementById('event-list');
+      eventList.innerHTML = '';
+
+      const today = new Date();
+
+      const upcomingEvents = events.filter(event => {
+        const eventDate = new Date(event.date);
+        return eventDate >= today;
+      });
+
+      upcomingEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      if (upcomingEvents.length === 0) {
+        eventList.innerHTML = '<p>No upcoming events scheduled.</p>';
+        return;
+      }
+
+      upcomingEvents.forEach(event => {
+        const eventDate = new Date(event.date);
+        const formattedDate = eventDate.toLocaleDateString('en-US', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        });
+
+        const eventItem = document.createElement('div');
+        eventItem.classList.add('event-item');
+        eventItem.innerHTML = `
+        <div class="event-date">
+          <i class="far fa-calendar-alt"></i>
+          ${formattedDate} | ${event.time}
+        </div>
+        <div class="event-title">${event.title}</div>
+        <div class="event-details">
+          <i class="fas fa-map-marker-alt"></i>
+          ${event.location} | ${event.category}
+        </div>
+      `;
+        eventList.appendChild(eventItem);
+      });
+    }
+
+    document.getElementById('prev-month').addEventListener('click', () => {
+      currentMonth--;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      }
+      generateCalendar(currentMonth, currentYear);
+    });
+
+    document.getElementById('next-month').addEventListener('click', () => {
+      currentMonth++;
+      if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      generateCalendar(currentMonth, currentYear);
+    });
+
+    generateCalendar(currentMonth, currentYear);
+  </script>
+
+</body>
+
+</html>
