@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - CampusConnect</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="UL" content="CampusConnect" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background: linear-gradient(135deg, #020d1f, #000000); */
+            /* background-color: #0c0e11; */
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .mission-vision {
+            /* min-height: 100vh; */
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .mission-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            text-align: left;
+        }
+
+        .text-section {
+            max-width: 600px;
+        }
+
+        .text-section h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .text-section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .text-section p {
+            font-size: 16px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .image-section img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .mission-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .text-section {
+                text-align: center;
+            }
+        }
+
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #0c0e11;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 30px 25px;
+            width: 250px;
+            text-align: left;
+            box-shadow: 0 8px 10px rgba(255, 255, 255, 0.05), 0 8px 5px -5px orange;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            color: orange;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <div class="nav-inner">
+            <div class="logo">Campus<span>Connect</span></div>
+
+            <ul class="nav-links" role="menubar" aria-label="Primary">
+                <li><a class="link" href="index.html">Home</a></li>
+                <li><a class="link" href="gallery.html">Gallery</a></li>
+
+                <li class="dropdown" data-align="left">
+                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Events<i
+                            class="fa-solid fa-sort-down"></i></button>
+                    <div class="dropdown-menu" role="menu" aria-hidden="true">
+                        <a role="menuitem" href="eventCalender.html">Event Calender</a>
+                        <a role="menuitem" href="eventDetails.html">Event Details</a>
+                    </div>
+                </li>
+
+                <li><a class="link" href="registration.html">Registration</a></li>
+                <li><a class="link" href="aboutUs.html">About Us</a></li>
+                <li><a class="link" href="contactUs.html">Contact Us</a></li>
+                <li><a class="link" href="feedback.html">Feedback</a></li>
+
+            </ul>
+
+            <div class="nav-right">
+                <!-- <a class="login" href="">Login/SignUp</a> -->
+                <a class="cta" href="login-SignUp.html">Login/SignUp</a>
+
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <!-- <span></span> -->
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileOverlay" tabindex="-1" aria-hidden="true"></div>
+
+    <aside class="mobile-panel" id="mobileMenu" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="mobile-head">
+            <div class="logo">Campus<span>Connect</span></div>
+            <button class="mobile-close" id="mobileClose" aria-label="Close menu"><i class="fa fa-times"></i></button>
+        </div>
+
+        <div class="mobile-inner">
+            <nav class="mobile-links" aria-label="Mobile menu">
+                <a class="mobile-link" href="index.html">Home</a>
+                <a class="mobile-link" href="gallery.html">Gallery</a>
+
+                <div class="mobile-accordion">
+                    <button class="mobile-accordion-toggle" aria-expanded="false">Events <span
+                            class="chev">▾</span></button>
+                    <div class="panel" aria-hidden="true">
+                        <a class="mobile-link" href="eventCalender.html">Event Calender</a>
+                        <a class="mobile-link" href="eventDetails.html">Event Details</a>
+                    </div>
+                </div>
+
+                <a class="mobile-link" href="registration.html">Registration</a>
+                <a class="mobile-link" href="aboutUs.html">About Us</a>
+                <a class="mobile-link" href="contactUs.html">Contact Us</a>
+                <a class="mobile-link" href="feedback.html">Feedback</a>
+
+            </nav>
+
+            <div class="mobile-cta">
+                <a class="cta" href="login-SignUp.html">Login/SignUp</a>
+            </div>
+        </div>
+    </aside>
+
+    <section class="mission-vision">
+        <div class="mission-container">
+
+
+
+            <div class="text-section">
+
+                <h1>About Us</h1>
+                <p>Welcome to Global Vision College. A Hub of Learning, Innovation, and Community
+                    Established in 1956, Global Vision College, located in Lahore, Pakistan, is committed to shaping
+                    bright futures through quality education, modern facilities, and a vibrant campus environment.
+                    Affiliated with the Higher Education Commission (HEC) of Pakistan since 1980, we have grown into a
+                    center of excellence, offering diverse programs in Science, Arts, Business, and Technology.
+                    Recognized as a top tier institution by HEC in 2023, our state of the art labs and inclusive
+                    learning environment empower students to excel.</p>
+
+
+
+            </div>
+
+            <div class="image-section">
+                <img src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29sbGVnZSUyMGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Every Expert Was Once a Beginner">
+            </div>
+
+            <div class="image-section">
+                <img src="https://oncampusadvertising.com/wp-content/uploads/2019/03/college-event-pic.jpg"
+                    alt="Every Expert Was Once a Beginner">
+            </div>
+
+            <div class="text-section">
+
+                <h2>Our Signature Events</h2>
+                <p>Global Vision College hosts a diverse range of annual events designed to foster creativity,
+                    collaboration, and community engagement. The year begins with Sports Days and Tournaments in March,
+                    where inter-college competitions in cricket, football, and athletics promote fitness and teamwork.
+                    In April and November, students participate in Community Outreach and Social Impact Programs,
+                    including blood donation drives and charity initiatives to serve society. Academic Conferences and
+                    Seminars in October provide a platform for exploring fields like AI, robotics, and innovation
+                    through expert-led discussions. The college also organizes Workshops, Career Fairs, and Open Days in
+                    September, offering students valuable opportunities to connect with industry leaders and explore
+                    career paths. Cultural Festivals and Annual Galas in December bring vibrant celebrations of music,
+                    dance, and drama, showcasing student talent and creativity. Finally, in June, Graduation Ceremonies
+                    and Award Nights are held to honor academic excellence and extracurricular achievements, marking a
+                    memorable conclusion to the academic journey.</p>
+
+            </div>
+
+
+            <div class="text-section">
+
+                <h2>Our Mission</h2>
+                <p>
+                    Global Vision College, since its HEC affiliation in 1980, is committed to providing a transformative
+                    learning environment that blends academic rigor, practical skills, and moral values. The college
+                    strives to offer high-quality, inclusive, and innovative education across diverse fields, while
+                    encouraging research, creativity, and entrepreneurship to address both national and global
+                    challenges. It is dedicated to developing leaders who embody integrity, social justice, and a spirit
+                    of community service, and to building strong collaborations with industry, government, and
+                    international institutions to enhance learning and create a meaningful impact.
+
+                </p>
+
+                <h2>Our Vision</h2>
+                <p>
+                    Global Vision College aspires to be a global leader in higher education, renowned for advancing
+                    knowledge, promoting innovation, and serving humanity. We aim to nurture graduates who are
+                    academically competent, socially responsible, and globally competitive, contributing to the progress
+                    of Pakistan and beyond.
+                </p>
+            </div>
+
+            <div class="image-section">
+                <img src="https://www.graduateprogram.org/wp-content/uploads/2022/06/June-16-The-Importance-of-School-Mission-Statements_web-1024x683.jpg"
+                    alt="Every Expert Was Once a Beginner">
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Organizing Bodies</h2>
+        <div class="card-container">
+            <div class="card">
+                <i class="fas fa-building"></i>
+                <h3>The Governing Body</h3>
+                <p>Responsible for overseeing the strategic growth of the institution, shaping policies, and ensuring
+                    that all initiatives align with the long-term vision and mission of Global Vision College.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h3>Academic Council</h3>
+                <p>Plays a vital role in maintaining academic excellence by designing, monitoring, and improving
+                    curricula, promoting innovative teaching methods, and encouraging research and scholarly activities.
+                </p>
+            </div>
+            <div class="card">
+                <i class="fas fa-handshake"></i>
+                <h3>Student Societies and Clubs</h3>
+                <p>Organize events like Hackathons, Cultural Fests, and community projects, giving students
+                    opportunities to showcase talents, build leadership skills, and promote teamwork.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-earth"></i>
+                <h3>Industry & Alumni Relations Committee</h3>
+                <p>Connects with industry and alumni to provide mentorship, internships, career opportunities, and
+                    collaborative projects for student growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h3>About CampusConnect</h3>
+                <p>Our central hub for discovering and managing college events, activities, and opportunities.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a><br>
+                <a href="gallery.html">Gallery</a><br>
+                <a href="eventCalender.html">Events</a><br>
+                <a href="aboutUs.html">About Us</a><br>
+                <a href="contactUs.html">Contact</a>
+            </div>
+
+            <div class="contact-info">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Global Vision College, Orangi Town Karachi</p>
+                <p><i class="fas fa-phone"></i> +92 123-4560527</p>
+                <p><i class="fas fa-envelope"></i> info@campusconnect.edu</p>
+            </div>
+
+            <div class="newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter to get updates on upcoming events.</p>
+                <input type="email" placeholder="Your Email Address">
+                <button>Subscribe</button>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 CampusConnect College Event Management System. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
